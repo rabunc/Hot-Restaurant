@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <title>Hot Restaurant</title>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+</head>
+<style>
+button {
+  display: inline;
+  text-align: middle;
+  vertical-align: middle;
+}
+
+.btn-primary {
+  margin-left:30%
+}
+
+a:hover{
+    text-decoration:none;
+}
+</style>
+<body>
+  <div class="container">
+    <div class="jumbotron" >
+      <h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant!</h1>
+      <h3 class="text-center">We only have 5 tables. Make your reservation before they're all gone!</h3>
+      <hr>
+      <a href="viewTables.html">
+          <button class="btn btn-primary" id="view-tables-btn" type="submit" >
+            <span class="glyphicon glyphicon-list-alt"></span> View Tables
+          </button>
+      </a>
+      <a href="makeReservation.html">
+        <button class="btn btn-danger" id="make-reservation-btn" type="submit">
+          <span class="glyphicon glyphicon-credit-card">
+          </span> Make Reservation
+        </button>
+      </a>
+    </div>
+    
+  
+</body>
+</html>
