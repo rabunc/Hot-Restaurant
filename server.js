@@ -11,11 +11,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+
+=======
 app.use(express.static("app/public")); // virtual path
 // can also provide a specific virtual path
 // example: app.use("/jim", express.static("app/public"));
 
-// listening on port
+
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
