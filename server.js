@@ -11,6 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+app.use(express.static("app/public")); // virtual path
+
 // listening on port
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
@@ -32,4 +34,6 @@ app.post("/api/new",function(req, res) {
   // add to the api reservationlist.js or waitlist.js
   // depends on the length of the reservationlist.js (if < 5 add)
     // else add to waitlist.js
+  var reservation = req.body;
+
 });
