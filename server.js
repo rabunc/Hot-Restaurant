@@ -11,9 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-var reservations = [];
-var waitList = [];
-
 // =======
 app.use(express.static("app/public")); // virtual path
   // can also provide a specific virtual path
@@ -24,30 +21,30 @@ app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
 
-require("./data/reservationList.js");
-require("./data/waitList.js");
+var reservationList = require("./app/data/reservationList.js");
+var waitList = require("./app/data/waitList.js");
 
 // html routes
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "/public/index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get("/tables", function(req, res) {
-  res.sendFile(path.join(__dirname, "/public/tables.html"));
+  res.sendFile(path.join(__dirname, "/app/public/tables.html"));
 });
 
 app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "/public/reserve.html"));
+  res.sendFile(path.join(__dirname, "/app/public/reserve.html"));
 });
 
 
 // API data routes
 app.get("/api/tables", function(req, res) {
-  res.sendFile(path.join(__dirname, "/data/reservationList.js"));
+  res.sendFile(path.join(__dirname, "/app/data/reservationList.js"));
 });
 
 app.get("/api/waitlist", function(req, res) {
-  res.sendFile(path.join(__dirname, "/data/waitList.js"));
+  res.sendFile(path.join(__dirname, "/app/data/waitList.js"));
 });
 
 app.post("/api/new",function(req, res) {
@@ -56,12 +53,15 @@ app.post("/api/new",function(req, res) {
     // else add to waitlist.js
   var reservation = req.body;
 
-  if (reservations.length < 5) {
-    reservations.push(reservation);
+  // add to reservation list if table available
+  // else add to the wait list
+  if (reservationList.length < 5) {
+    reservationList.push(reservation);
     console.log(reservation);
     alert("You got a table!");
   } else {
     waitList.push(reservation);
+    console.log(reservation);
     console.log("Going to have to wait...");
   }
 
