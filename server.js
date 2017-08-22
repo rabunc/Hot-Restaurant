@@ -11,11 +11,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+var reservations = [];
+var waitList = [];
 
-=======
+// =======
 app.use(express.static("app/public")); // virtual path
-// can also provide a specific virtual path
-// example: app.use("/jim", express.static("app/public"));
+  // can also provide a specific virtual path
+  // example: app.use("/jim", express.static("app/public"));
 
 
 app.listen(PORT, function() {
@@ -53,5 +55,14 @@ app.post("/api/new",function(req, res) {
   // depends on the length of the reservationlist.js (if < 5 add)
     // else add to waitlist.js
   var reservation = req.body;
+
+  if (reservations.length < 5) {
+    reservations.push(reservation);
+    console.log(reservation);
+    alert("You got a table!");
+  } else {
+    waitList.push(reservation);
+    console.log("Going to have to wait...");
+  }
 
 });
