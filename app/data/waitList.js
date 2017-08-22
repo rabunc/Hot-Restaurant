@@ -1,4 +1,4 @@
-[
+var waitList = [
   {
   "customerName": "me",
   "phoneNumber": "me",
@@ -6,3 +6,5 @@
   "customerID": "me"
   }
  ]
+
+ module.exports = waitList;
