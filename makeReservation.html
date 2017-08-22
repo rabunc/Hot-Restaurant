@@ -82,7 +82,24 @@
 
             </div>
         </div>
+<script>
+            $("#submit-reservation-btn").on("click", function(event) {
+      event.preventDefault();
+      var newCharacter = {
+        name: $("#name-input").val().trim(),
+        role: $("#phone-input").val().trim(),
+        age: $("#email-input").val().trim(),
+        forcePoints: $("#id-input").val().trim()
+      };
 
+      // Question: What does this code do??
+      $.post("/api/new", newCharacter)
+      .done(function(data) {
+        console.log(data);
+        alert("Adding reservation...");
+      });
+    });
+    </script>
 </body>
 
 </html>
